@@ -5,9 +5,11 @@ package main
 //it looks for narrow pictures (stretched out in format like i.e. 1:2)
 //the goal is to give us/me a square picture, from this narrow picture
 
+//TODO: if the narrow image is png and seems to have a transparent background, make the new image likewise
 import (
 	"fmt"
 	"image"
+	"image/color"
 	"image/draw"
 	"image/jpeg"
 	"image/png"
@@ -95,8 +97,8 @@ func main() {
                     paddX = true
                 }
                 m := image.NewRGBA(image.Rect(0, 0, biggest, biggest)) //a square image
-                //blue := color.RGBA{0, 0, 255, 255}
-                //draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
+                blue := color.RGBA{0, 0, 255, 255}
+                draw.Draw(m, m.Bounds(), &image.Uniform{blue}, image.ZP, draw.Src)
 
                 var dp image.Point //have a start point in the destination
                 dp.X = 0
